@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طمني - مساعدك الطبي الذكي</title>
+    <meta name="description" content="تطبيق طمني يساعدك على فهم نتائج تحاليلك الطبية بطريقة سهلة ومبسطة باستخدام الذكاء الاصطناعي">
+    <meta name="keywords" content="تحاليل طبية, تبسيط التحاليل, مساعد طبي, ذكاء اصطناعي, طمني">
+    <meta name="theme-color" content="#0066CC">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="طمني - مساعدك الطبي الذكي" class="logo">
+                <div class="logo-text">
+                    <span class="app-name" data-ar="طمني" data-en="Tammeni">طمني</span>
+                    <div class="status">
+                        <span class="status-dot"></span>
+                        <span data-ar="متصل الآن" data-en="Online">متصل الآن</span>
+                    </div>
+                </div>
+            </div>
+            <button class="lang-btn" id="langBtn" title="تغيير اللغة">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span id="langText">EN</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <!-- Welcome Message -->
+                <div class="welcome-card" id="welcomeCard">
+                    <div class="welcome-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                        </svg>
+                    </div>
+                    <h2 data-ar="مرحباً بك في طمني" data-en="Welcome to Tammeni">مرحباً بك في طمني</h2>
+                    <p data-ar="مساعدك الذكي لفهم نتائج تحاليلك الطبية. أرسل صورة التحليل أو اكتب استفسارك وسأساعدك في فهم النتائج بطريقة بسيطة." data-en="Your smart assistant for understanding medical test results. Send an image of your test or write your question and I'll help you understand the results simply.">مساعدك الذكي لفهم نتائج تحاليلك الطبية. أرسل صورة التحليل أو اكتب استفسارك وسأساعدك في فهم النتائج بطريقة بسيطة.</p>
+                    <div class="quick-actions">
+                        <button class="quick-btn" data-message-ar="ما هي القيم الطبيعية لتحليل CBC؟" data-message-en="What are the normal values for CBC test?">
+                            <span data-ar="تحليل CBC" data-en="CBC Test">تحليل CBC</span>
+                        </button>
+                        <button class="quick-btn" data-message-ar="اشرح لي تحليل وظائف الكبد" data-message-en="Explain liver function test">
+                            <span data-ar="وظائف الكبد" data-en="Liver Function">وظائف الكبد</span>
+                        </button>
+                        <button class="quick-btn" data-message-ar="ما هو تحليل السكر التراكمي؟" data-message-en="What is HbA1c test?">
+                            <span data-ar="السكر التراكمي" data-en="HbA1c">السكر التراكمي</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatMessages"></div>
+
+                <!-- Input Section -->
+                <div class="input-section">
+                    <div class="input-container">
+                        <button class="attach-btn" id="attachBtn" title="إرفاق ملف">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                            </svg>
+                        </button>
+                        <input type="file" id="fileInput" accept="image/*,.pdf" hidden>
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="اكتب سؤالك هنا..." 
+                            data-placeholder-ar="اكتب سؤالك هنا..."
+                            data-placeholder-en="Type your question here..."
+                            rows="1"
+                        ></textarea>
+                        <button class="send-btn" id="sendBtn" title="إرسال">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="disclaimer" data-ar="تنبيه: هذا المساعد للأغراض التعليمية فقط ولا يغني عن استشارة الطبيب المختص" data-en="Disclaimer: This assistant is for educational purposes only and does not replace consulting a specialist doctor">تنبيه: هذا المساعد للأغراض التعليمية فقط ولا يغني عن استشارة الطبيب المختص</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Features Card -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <h3 data-ar="المميزات" data-en="Features">المميزات</h3>
+                    </div>
+                    <ul class="features-list">
+                        <li data-ar="تحليل صور التحاليل الطبية" data-en="Analyze medical test images">تحليل صور التحاليل الطبية</li>
+                        <li data-ar="شرح مبسط للنتائج" data-en="Simple explanation of results">شرح مبسط للنتائج</li>
+                        <li data-ar="دعم اللغتين العربية والإنجليزية" data-en="Arabic and English support">دعم اللغتين العربية والإنجليزية</li>
+                        <li data-ar="استجابة فورية على مدار الساعة" data-en="24/7 instant response">استجابة فورية على مدار الساعة</li>
+                    </ul>
+                </div>
+
+                <!-- Warning Card -->
+                <div class="info-card warning-card">
+                    <div class="card-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        <h3 data-ar="تنبيه مهم" data-en="Important Notice">تنبيه مهم</h3>
+                    </div>
+                    <p data-ar="المعلومات المقدمة هنا للأغراض التعليمية فقط ولا تعتبر بديلاً عن الاستشارة الطبية المتخصصة. يرجى مراجعة طبيبك للحصول على تشخيص دقيق." data-en="The information provided here is for educational purposes only and is not a substitute for professional medical advice. Please consult your doctor for accurate diagnosis.">المعلومات المقدمة هنا للأغراض التعليمية فقط ولا تعتبر بديلاً عن الاستشارة الطبية المتخصصة. يرجى مراجعة طبيبك للحصول على تشخيص دقيق.</p>
+                </div>
+
+                <!-- Privacy Card -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <h3 data-ar="الخصوصية" data-en="Privacy">الخصوصية</h3>
+                    </div>
+                    <p data-ar="نحن نحترم خصوصيتك. لا يتم تخزين أي من بياناتك الطبية أو صور تحاليلك على خوادمنا." data-en="We respect your privacy. None of your medical data or test images are stored on our servers.">نحن نحترم خصوصيتك. لا يتم تخزين أي من بياناتك الطبية أو صور تحاليلك على خوادمنا.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p data-ar="© 2026 طمني - جميع الحقوق محفوظة" data-en="© 2026 Tammeni - All rights reserved">© 2026 طمني - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
